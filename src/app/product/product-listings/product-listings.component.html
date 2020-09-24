@@ -1,0 +1,17 @@
+<div class="container">
+  <br>
+  <div class="row">
+    <div *ngFor="let product of products;index as productId" class="col-sm">
+      <a [routerLink]="['detail', productId]">
+      <div class="card">
+        <img src="{{ product.coverImage }}" class="card-img-top">
+        <div class="card-body">
+          <h3>{{ product.name }}</h3>
+        <p *ngIf="product.description" class="card-text"> Description: {{ product.description }}</p>
+        </div>
+      </div>
+      </a>
+    </div>
+  </div>
+</div>
+
