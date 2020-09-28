@@ -24,12 +24,11 @@ const app = express()
 app.use('/api/v1/products', productRoutes)
 
 if(process.env.NODE_ENV === 'production'){
-  const appPath = path.join(__dirname,'..','dist/reservation-app')
+  const appPath = path.join(__dirname,'..','dist','reservation-app')
   app.use(express.static(appPath))
   app.get("*",function(req,res){
-  res.sendFile(path.resolve(appPath,'index.html'))
-})
-
+    res.sendFile(path.resolve(appPath,'index.html'))
+  })
 }
 
 
@@ -38,5 +37,3 @@ const PORT = process.env.PORT || '3001'
 app.listen(PORT,function(){
   console.log('I am running')
 })
-
-//mongodb+srv://test:<password>@cluster0.nbrkf.mongodb.net/<dbname>?retryWrites=true&w=majority
