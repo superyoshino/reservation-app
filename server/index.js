@@ -12,9 +12,10 @@ mongoose.connect(config.DB_URI, {
   useCreateIndex: true
 }).then(
   () => {
+    debugger
     if(process.env.NODE_ENV !== 'production'){
       const fakeDB = new FakeDB()
-      //fakeDB.initDB()
+      fakeDB.initDB()
     }
   }
 )
@@ -22,14 +23,14 @@ mongoose.connect(config.DB_URI, {
 const app = express()
 
 app.use('/api/v1/products', productRoutes)
-
-if(process.env.NODE_ENV === 'production'){
+debugger
+//if(process.env.NODE_ENV === 'production'){
   const appPath = path.join(__dirname,'..','dist','reservation-app')
   app.use(express.static(appPath))
   app.get("*",function(req,res){
     res.sendFile(path.resolve(appPath,'index.html'))
   })
-}
+//}
 
 
 const PORT = process.env.PORT || '3001'
